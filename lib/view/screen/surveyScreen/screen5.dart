@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controller/screen5controller.dart';
+import '../../../controller/surveyAllScreenController.dart';
 import '../../widget/customButton.dart';
 import '../../widget/surveyBackgroundContainer.dart';
 
-class SurveyScreen5 extends StatelessWidget {
+class SurveyScreen5 extends StatefulWidget {
   const SurveyScreen5({super.key});
+
+  @override
+  State<SurveyScreen5> createState() => _SurveyScreen5State();
+}
+
+class _SurveyScreen5State extends State<SurveyScreen5> {
+
+  final SurveyAllScreenController _allScreenController =
+  Get.find<SurveyAllScreenController>();
+
+  Screen5Controller screen5controller = Screen5Controller();
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +50,30 @@ class SurveyScreen5 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                 Row(
-                  children: [
-                    Expanded(
-                      child: CustomButton(
-                          isSelectedButton: true,
-                          colorCode: 0xffDEEFFF,
-                          btnName: 'হ্যাঁ', onPressed: () {  },),
-                    ),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: CustomButton(
-                          colorCode: 0xffFFE1E1, btnName: 'না', onPressed: () {  },),
-                    ),
-                  ],
-                ),
+                 Obx(
+                   () => Row(
+                    children: [
+                      Expanded(
+                        child: CustomButton(
+                            isSelectedButton: screen5controller.activeIndex.value == 1 ? true : false,
+                            colorCode: 0xffDEEFFF,
+                            btnName: 'হ্যাঁ', onPressed: () {
+                          screen5controller.indexChanger(1);
+                          _allScreenController.Q8.value = 'হ্যাঁ';
+                        },),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: CustomButton(
+                          isSelectedButton: screen5controller.activeIndex.value == 2 ? true : false,
+                            colorCode: 0xffFFE1E1, btnName: 'না', onPressed: () {
+                          screen5controller.indexChanger(2);
+                          _allScreenController.Q8.value = 'না';
+                        },),
+                      ),
+                    ],
+                                   ),
+                 ),
               ],
             ),
           ),
@@ -73,7 +96,7 @@ class SurveyScreen5 extends StatelessWidget {
                         BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
                             blurRadius: 4,
-                            offset: Offset(0, 2)),
+                            offset: const Offset(0, 2)),
                       ],
                     ),
                     child: const Text(
@@ -82,21 +105,28 @@ class SurveyScreen5 extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                   Row(
-                    children: [
-                      Expanded(
-                        child: CustomButton(
-                            isSelectedButton: true,
-                            colorCode: 0xffDEEFFF,
-                            btnName: 'হ্যাঁ', onPressed: () {  },),
-                      ),
-                      SizedBox(width: 16),
-                      Expanded(
-                        child: CustomButton(
-                            colorCode: 0xffFFE1E1, btnName: 'না', onPressed: () {  },),
-                      ),
-                    ],
-                  ),
+                   Obx(() => Row(
+                     children: [
+                       Expanded(
+                         child: CustomButton(
+                           isSelectedButton: screen5controller.activeIndex2.value == 1,
+                           colorCode: 0xffDEEFFF,
+                           btnName: 'হ্যাঁ', onPressed: () {
+                           screen5controller.indexChanger2(1);
+                           _allScreenController.Q9.value = 'হ্যাঁ';
+                         },),
+                       ),
+                       const SizedBox(width: 16),
+                       Expanded(
+                         child: CustomButton(
+                           isSelectedButton: screen5controller.activeIndex2.value == 2,
+                           colorCode: 0xffFFE1E1, btnName: 'না', onPressed: () {
+                           screen5controller.indexChanger2(2);
+                           _allScreenController.Q9.value = 'না';
+                         },),
+                       ),
+                     ],
+                   ),)
                 ],
               ),
             )),

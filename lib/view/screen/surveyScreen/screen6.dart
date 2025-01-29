@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controller/screen6controller.dart';
+import '../../../controller/surveyAllScreenController.dart';
 import '../../widget/customButton.dart';
 import '../../widget/surveyBackgroundContainer.dart';
 
-class SurveyScreen6 extends StatelessWidget {
+class SurveyScreen6 extends StatefulWidget {
   const SurveyScreen6({super.key});
+
+  @override
+  State<SurveyScreen6> createState() => _SurveyScreen6State();
+}
+
+class _SurveyScreen6State extends State<SurveyScreen6> {
+
+  final SurveyAllScreenController _allScreenController =
+  Get.find<SurveyAllScreenController>();
+
+  Screen6Controller screen6controller = Screen6Controller();
 
   @override
   Widget build(BuildContext context) {
@@ -36,26 +49,39 @@ class SurveyScreen6 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                 Row(
-                  children: [
-                    Expanded(
-                      child: CustomButton(
-                          isSelectedButton: true,
-                          colorCode: 0xffDEEFFF,
-                          btnName: 'হ্যাঁ', onPressed: () {  },),
-                    ),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: CustomButton(
-                          colorCode: 0xffEFF7FF, btnName: 'চেষ্টা করব', onPressed: () {  },),
-                    ),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: CustomButton(
-                          colorCode: 0xffFFE1E1, btnName: 'না', onPressed: () {  },),
-                    ),
-                  ],
-                ),
+                 Obx(
+                   () => Row(
+                    children: [
+                      Expanded(
+                        child: CustomButton(
+                            isSelectedButton: screen6controller.activeIndex.value == 1,
+                            colorCode: 0xffDEEFFF,
+                            btnName: 'হ্যাঁ', onPressed: () {
+                          screen6controller.indexChanger(1);
+                          _allScreenController.Q10.value = 'হ্যাঁ';
+                        },),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: CustomButton(
+                          isSelectedButton: screen6controller.activeIndex.value == 2,
+                            colorCode: 0xffEFF7FF, btnName: 'চেষ্টা করব', onPressed: () {
+                          screen6controller.indexChanger(2);
+                          _allScreenController.Q10.value = 'চেষ্টা করব';
+                        },),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: CustomButton(
+                          isSelectedButton: screen6controller.activeIndex.value == 3,
+                            colorCode: 0xffFFE1E1, btnName: 'না', onPressed: () {
+                          screen6controller.indexChanger(3);
+                          _allScreenController.Q10.value = 'না';
+                        },),
+                      ),
+                    ],
+                                   ),
+                 ),
               ],
             ),
           ),

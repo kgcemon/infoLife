@@ -1,4 +1,5 @@
 import 'package:edu_servey/view/screen/dashboard.dart';
+import 'package:edu_servey/view/screen/main_survey_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -63,12 +64,12 @@ class _SucessGifScreenState extends State<SucessGifScreen> {
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold)),
-                                Text('৩-১৭', style: TextStyle(fontSize: 20)),
+                                Text('১৭-১৭', style: TextStyle(fontSize: 20)),
                               ],
                             ),
                             const SizedBox(height: 8),
                             LinearProgressIndicator(
-                              value: 0.2,
+                              value: 10,
                               backgroundColor: Colors.grey[300],
                               valueColor: const AlwaysStoppedAnimation<Color>(
                                   Colors.blue),
@@ -96,7 +97,14 @@ class _SucessGifScreenState extends State<SucessGifScreen> {
                             child: SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () => Get.offAll(()=>const Dashboard()),
+                                onPressed:() {
+                                  controller.activeIndex.value = 0;
+
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const Dashboard()),
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8)),
@@ -126,7 +134,10 @@ class _SucessGifScreenState extends State<SucessGifScreen> {
                             child: SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  controller.activeIndex.value = 0;
+                                  Get.offAll(()=>const MainSurveyScreen());
+                                },
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8)),

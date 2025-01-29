@@ -1,8 +1,21 @@
+import 'package:edu_servey/controller/surveyAllScreenController.dart';
 import 'package:edu_servey/view/widget/surveyBackgroundContainer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class SurveyScreen9 extends StatelessWidget {
+class SurveyScreen9 extends StatefulWidget {
   const SurveyScreen9({super.key});
+
+  @override
+  State<SurveyScreen9> createState() => _SurveyScreen9State();
+}
+
+class _SurveyScreen9State extends State<SurveyScreen9> {
+
+
+  final SurveyAllScreenController _allScreenController =
+  Get.find<SurveyAllScreenController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +60,11 @@ class SurveyScreen9 extends StatelessWidget {
                 height: 8,
               ),
               DropdownButtonFormField<String>(
+                value: _allScreenController.upoZila.value.isNotEmpty ? _allScreenController.upoZila.value : null, // Ensure initial value is set or null if empty
+                onSaved: (newValue) {
+                  print(newValue);
+                  _allScreenController.upoZila.value = newValue!;
+                },
                 decoration: const InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
@@ -60,8 +78,7 @@ class SurveyScreen9 extends StatelessWidget {
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
                   ),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 ),
                 items: const [
                   DropdownMenuItem(
@@ -100,9 +117,11 @@ class SurveyScreen9 extends StatelessWidget {
                 onChanged: (value) {
                   // Handle the selected value
                   print("Selected Upazila: $value");
+                  _allScreenController.upoZila.value = value!;
                 },
                 hint: const Text("   উপজেলা নির্বাচন করুন"),
               ),
+
               const SizedBox(
                 height: 8,
               ),
@@ -110,8 +129,9 @@ class SurveyScreen9 extends StatelessWidget {
               const SizedBox(
                 height: 8,
               ),
-              const TextField(
-                decoration: InputDecoration(
+               TextField(
+                controller: _allScreenController.unionController,
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     hintText: "   ইউনিয়ন/পৌরসভা",

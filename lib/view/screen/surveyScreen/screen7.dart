@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import '../../../controller/screen7controller.dart';
+import '../../../controller/surveyAllScreenController.dart';
 import '../../widget/customButton.dart';
 import '../../widget/surveyBackgroundContainer.dart';
 
-class SurveyScreen7 extends StatelessWidget {
+class SurveyScreen7 extends StatefulWidget {
   const SurveyScreen7({super.key});
+
+  @override
+  State<SurveyScreen7> createState() => _SurveyScreen7State();
+}
+
+class _SurveyScreen7State extends State<SurveyScreen7> {
+
+  final SurveyAllScreenController _allScreenController =
+  Get.find<SurveyAllScreenController>();
+
+  Screen7Controller screen7controller = Screen7Controller();
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +57,29 @@ class SurveyScreen7 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomButton(
-                          isSelectedButton: true,
-                          colorCode: 0xffDEEFFF,
-                          btnName: 'বলেছি', onPressed: () {  },),
-                    ),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child:
-                          CustomButton(colorCode: 0xffFFE1E1, btnName: 'বলিনি', onPressed: () {  },),
-                    ),
-                  ],
+                Obx( () => Row(
+                    children: [
+                      Expanded(
+                        child: CustomButton(
+                            isSelectedButton: screen7controller.activeIndex.value == 1,
+                            colorCode: 0xffDEEFFF,
+                            btnName: 'বলেছি', onPressed: () {
+                          screen7controller.indexChanger(1);
+                          _allScreenController.Q11.value = 'বলেছি';
+                        },),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child:
+                            CustomButton(
+                              isSelectedButton: screen7controller.activeIndex.value == 2,
+                              colorCode: 0xffFFE1E1, btnName: 'বলিনি', onPressed: () {
+                              screen7controller.indexChanger(2);
+                              _allScreenController.Q11.value = 'বলিনি';
+                            },),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

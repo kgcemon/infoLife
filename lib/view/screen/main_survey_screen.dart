@@ -13,7 +13,6 @@ import 'package:edu_servey/view/widget/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import '../widget/surveyBackgroundContainer.dart';
 import 'surveyScreen/screen2.dart';
 
 class MainSurveyScreen extends StatefulWidget {
@@ -39,8 +38,25 @@ class _MainSurveyScreenState extends State<MainSurveyScreen> {
 
   final SurveyAllScreenController controller = Get.put(SurveyAllScreenController());
 
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+
+  }
+
+
+  load()async{
+    var data = await controller.getAllData();
+    print(data);
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
+    print(controller.Q1.value);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -107,7 +123,8 @@ class _MainSurveyScreenState extends State<MainSurveyScreen> {
         if (controller.activeIndex.value < allScreen.length - 1) {
           controller.changeScreen(controller.activeIndex.value + 1);
         } else {
-          Get.to(() => const SucessGifScreen());
+          controller.activeIndex.value = 0;
+          controller.saveData().then((value) =>  Get.offAll(() => const SucessGifScreen()),);
         }
       },
       style: ElevatedButton.styleFrom(

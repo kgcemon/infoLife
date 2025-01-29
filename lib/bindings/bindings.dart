@@ -1,10 +1,11 @@
-import 'package:edu_servey/controller/surveyScreen1Controller.dart';
 import 'package:get/get.dart';
+
+import '../controller/surveyAllScreenController.dart';
 
 class BindingsAllController extends Bindings{
   @override
   void dependencies() {
-    Get.put(SurveyScreen1Controller());
+    Get.put(SurveyAllScreenController());
   }
 
 }

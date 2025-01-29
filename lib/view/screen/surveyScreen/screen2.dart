@@ -3,7 +3,6 @@ import 'package:edu_servey/view/widget/surveyBackgroundContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controller/surveyAllScreenController.dart';
-import '../../../controller/surveyScreen1Controller.dart';
 
 class SurveyScreen2 extends StatefulWidget {
   const SurveyScreen2({super.key});
@@ -13,8 +12,7 @@ class SurveyScreen2 extends StatefulWidget {
 }
 
 class _SurveyScreen2State extends State<SurveyScreen2> {
-  final SurveyAllScreenController _allScreenController =
-      SurveyAllScreenController();
+  final SurveyAllScreenController _allScreenController = Get.find<SurveyAllScreenController>();
 
   @override
   void initState() {
@@ -33,7 +31,7 @@ class _SurveyScreen2State extends State<SurveyScreen2> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Obx( () => Text("১. শিক্ষার্থীর নাম ${Get.find<SurveyScreen1Controller>().Q1.value}")),
+                 Obx( () => Text("১. শিক্ষার্থীর নাম ${_allScreenController.Q1.value}")),
                 const SizedBox(
                   height: 12,
                 ),
@@ -77,6 +75,7 @@ class _SurveyScreen2State extends State<SurveyScreen2> {
                           colorCode: 0xffDEEFFF,
                           btnName: 'প্রাথমিক',
                           onPressed: () {
+                            _allScreenController.Q3.value = 'প্রাথমিক';
                             _allScreenController.whoIsReadSelector(1);
                           },
                         ),
@@ -89,7 +88,7 @@ class _SurveyScreen2State extends State<SurveyScreen2> {
                           colorCode: 0xffDEEFFF,
                           btnName: 'মাধ্যমিক',
                           onPressed: () {
-                            print(_allScreenController.Q1.value);
+                            _allScreenController.Q3.value = 'মাধ্যমিক';
                             _allScreenController.whoIsReadSelector(2);
                           },
                         ),
