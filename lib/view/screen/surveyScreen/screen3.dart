@@ -16,7 +16,8 @@ class _SurveyScreen3State extends State<SurveyScreen3> {
   final SurveyAllScreenController _allScreenController =
       Get.find<SurveyAllScreenController>();
 
-  Screen3Controller screen3controller = Screen3Controller();
+
+  final Screen3Controller screen3controller = Get.find<Screen3Controller>();
 
   List subjectList = [
     'ইংরেজি',

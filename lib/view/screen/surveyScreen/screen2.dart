@@ -19,6 +19,13 @@ class _SurveyScreen2State extends State<SurveyScreen2> {
     super.initState();
   }
 
+  List subjectList1 = [
+    'ইংরেজি',
+    'কম্পিউটার',
+    'প্রোগ্রামিং',
+    'অন্যান্য',
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,7 @@ class _SurveyScreen2State extends State<SurveyScreen2> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Obx( () => Text("১. শিক্ষার্থীর নাম ${_allScreenController.Q1.value}")),
+                 Obx( () => const Text("১. শিক্ষার্থীর নাম")),
                 const SizedBox(
                   height: 12,
                 ),
@@ -96,6 +103,28 @@ class _SurveyScreen2State extends State<SurveyScreen2> {
                     ],
                   ),
                 ),
+
+
+                const SizedBox(height: 16),
+               Obx(() =>  _allScreenController.Q3.value == 'প্রাথমিক' ? GridView.builder(
+                 shrinkWrap: true,
+                 itemCount: subjectList1.length,
+                 gridDelegate:
+                 const SliverGridDelegateWithFixedCrossAxisCount(
+                     mainAxisExtent: 50,
+                     mainAxisSpacing: 15,
+                     crossAxisSpacing: 15,
+                     crossAxisCount: 2),
+                 itemBuilder: (context, index) =>CustomButton(
+                     isSelectedButton: _allScreenController.activeIndex2.value == index,
+                     colorCode: 0xffDEEFFF,
+                     btnName: subjectList1[index],
+                     onPressed: () {
+                       _allScreenController.indexChanger2(index);
+                       _allScreenController.Q5.value = subjectList1[index];
+                     },
+                   ),
+               ) : SizedBox(),)
               ],
             ),
           ),

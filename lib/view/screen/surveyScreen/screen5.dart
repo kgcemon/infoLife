@@ -17,7 +17,9 @@ class _SurveyScreen5State extends State<SurveyScreen5> {
   final SurveyAllScreenController _allScreenController =
   Get.find<SurveyAllScreenController>();
 
-  Screen5Controller screen5controller = Screen5Controller();
+  final Screen5Controller screen5controller =
+  Get.find<Screen5Controller>();
+
 
 
   @override

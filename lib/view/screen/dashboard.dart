@@ -17,7 +17,7 @@ class Dashboard extends StatelessWidget {
         "icon": const Icon(
           Icons.list_alt_sharp,
           size: 48,
-          color: Colors.blue,
+          color: Colors.deepPurpleAccent,
         ),
         "name": "নতুন ফরম"
       },
@@ -25,7 +25,7 @@ class Dashboard extends StatelessWidget {
         "icon": const Icon(
           Icons.calendar_month,
           size: 48,
-          color: Colors.blue,
+          color: Colors.deepPurpleAccent,
         ),
         "name": "আজকের সংগ্রহ"
       },
@@ -33,7 +33,7 @@ class Dashboard extends StatelessWidget {
         "icon": const Icon(
           Icons.list,
           size: 48,
-          color: Colors.blue,
+          color: Colors.deepPurpleAccent,
         ),
         "name": "সব ফরম"
       },
@@ -41,7 +41,7 @@ class Dashboard extends StatelessWidget {
         "icon": const Icon(
           Icons.send,
           size: 48,
-          color: Colors.blue,
+          color: Colors.deepPurpleAccent,
         ),
         "name": "তথ্য পাঠান"
       },
@@ -98,7 +98,7 @@ class Dashboard extends StatelessWidget {
                 unselectedItemColor: Colors.white,
                 unselectedFontSize: 16,
                 fixedColor: Colors.white,
-                backgroundColor: const Color(0xff0073D2),
+                backgroundColor:  Colors.deepPurpleAccent,
                 items: [
                   BottomNavigationBarItem(
                       icon: Padding(

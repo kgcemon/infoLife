@@ -3,10 +3,13 @@ import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../view/screen/sucess_gif_screen.dart';
+
 
 class SurveyAllScreenController extends GetxController{
 
   RxInt activeIndex = 0.obs;
+  RxInt activeIndex2 = 10.obs;
   RxString Q1 = ''.obs; //আপনার কী নার্সারি থেকে দশম শ্রেণিতে পড়ে এমন ছেলে-মেয়ে আছে?
   RxString Q2 = ''.obs; //থাকলে, কতোজন আছে?
   TextEditingController studentsNameController = TextEditingController(); ////১. শিক্ষার্থীর নাম
@@ -32,6 +35,9 @@ class SurveyAllScreenController extends GetxController{
   Database? _database;
 
 
+  indexChanger2(int index){
+    activeIndex2.value = index;
+  }
 
   // Initialize SQLite database
   Future<void> initDatabase() async {
@@ -119,7 +125,7 @@ class SurveyAllScreenController extends GetxController{
   }
 
   //থাকলে, কতোজন আছে?
-  RxInt howManyHasStudentsFromNurseryToTenthGradeSelected = 0.obs;
+  RxInt howManyHasStudentsFromNurseryToTenthGradeSelected = 30.obs;
   void howManyHasStudentsFromNurseryToTenthGradeSelector(int index){
     howManyHasStudentsFromNurseryToTenthGradeSelected.value = index;
     print(index);
@@ -163,6 +169,125 @@ class SurveyAllScreenController extends GetxController{
   void onInit() {
     super.onInit();
     initDatabase();
+  }
+
+
+  nextScreen(){
+    print(activeIndex.value);
+    if (activeIndex.value==0) {
+      if (Q1.value == "না") {
+        changeScreen(activeIndex.value += 1);
+        activeIndex.value+1;
+      } else if (Q1.value == "হ্যাঁ") {
+
+        if (Q2.value.isNotEmpty) {
+          changeScreen(activeIndex.value + 1);
+        } else {
+          Get.snackbar(
+              backgroundColor: const Color(0xffEFEFEF),
+              "error",
+              "Please Select 1");
+        }
+      } else {
+        Get.snackbar(
+            backgroundColor: const Color(0xffEFEFEF),
+            "error",
+            "Please Select 1");
+      }
+    }
+    else if (activeIndex.value==1) {
+      if (studentsNameController.text.isNotEmpty && Q3.value.isNotEmpty) {
+        changeScreen(activeIndex.value + 1);
+      } else {
+        Get.snackbar(
+            backgroundColor: const Color(0xffEFEFEF),
+            "error",
+            "Please Select 1");
+      }
+    }else if (activeIndex.value==2) {
+      if (Q4.value == "না") {
+        changeScreen(activeIndex.value += 1);
+        activeIndex.value+1;
+      } else if (Q4.value == "হ্যাঁ") {
+
+        if (Q5.value.isNotEmpty) {
+          changeScreen(activeIndex.value + 1);
+        } else {
+          Get.snackbar(
+              backgroundColor: const Color(0xffEFEFEF),
+              "error",
+              "Please Select 1");
+        }
+      } else {
+        Get.snackbar(
+            backgroundColor: const Color(0xffEFEFEF),
+            "error",
+            "Please Select 1");
+      }
+    }else if (activeIndex.value==3) {
+      if (Q6.value.isNotEmpty && Q7.isNotEmpty) {
+        changeScreen(activeIndex.value += 1);
+        activeIndex.value+1;
+      } else {
+        Get.snackbar(
+            backgroundColor: const Color(0xffEFEFEF),
+            "error",
+            "Please Select 1");
+      }
+    }else if (activeIndex.value==4) {
+      if (Q8.value.isNotEmpty && Q9.isNotEmpty) {
+        changeScreen(activeIndex.value += 1);
+        activeIndex.value+1;
+      } else {
+        Get.snackbar(
+            backgroundColor: const Color(0xffEFEFEF),
+            "error",
+            "Please Select 1");
+      }
+    }else if (activeIndex.value==5) {
+      if (Q10.isNotEmpty) {
+        changeScreen(activeIndex.value += 1);
+        activeIndex.value+1;
+      } else {
+        Get.snackbar(
+            backgroundColor: const Color(0xffEFEFEF),
+            "error",
+            "Please Select 1");
+      }
+    }else if (activeIndex.value==6) {
+      if (Q11.isNotEmpty) {
+        changeScreen(activeIndex.value += 1);
+        activeIndex.value+1;
+      } else {
+        Get.snackbar(
+            backgroundColor: const Color(0xffEFEFEF),
+            "error",
+            "Please Select 1");
+      }
+    }else if (activeIndex.value == 7) {
+      if (yourNameController.text.isNotEmpty && activeIndex.value==7 && mobileNumber.text.isNotEmpty && othersPhoneNumber.text.isNotEmpty) {
+        changeScreen(activeIndex.value += 1);
+        activeIndex.value+1;
+      } else {
+        Get.snackbar(
+            backgroundColor: const Color(0xffEFEFEF),
+            "error",
+            "Please Select 1");
+      }
+    }else if (activeIndex.value == 8) {
+      if (upoZila.value.isNotEmpty && unionController.text.isNotEmpty) {
+        changeScreen(activeIndex.value += 1);
+        activeIndex.value+1;
+      } else {
+        Get.snackbar(
+            backgroundColor: const Color(0xffEFEFEF),
+            "error",
+            "Please Select 1");
+      }
+    }else if (activeIndex.value == 9) {
+      Get.snackbar("Success", "Your Data Save Successful");
+      saveData().then((value) => Get.to(()=>const SucessGifScreen()),);
+    }
   }
 
 
