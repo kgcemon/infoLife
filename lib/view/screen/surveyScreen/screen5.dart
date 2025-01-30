@@ -20,7 +20,12 @@ class _SurveyScreen5State extends State<SurveyScreen5> {
   final Screen5Controller screen5controller =
   Get.find<Screen5Controller>();
 
-
+  @override
+  void initState() {
+    screen5controller.activeIndex.value = 0;
+    screen5controller.activeIndex2.value = 10;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

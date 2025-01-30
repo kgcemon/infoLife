@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../controller/surveyAllScreenController.dart';
+import '../widget/app_bar.dart';
 import '../widget/surveyBackgroundContainer.dart';
 
 class SucessGifScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _SucessGifScreenState extends State<SucessGifScreen> {
   }
 
   void loading() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       loadings = true;
       setState(() {});
     });
@@ -38,11 +39,7 @@ class _SucessGifScreenState extends State<SucessGifScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: SvgPicture.asset("assets/logo.svg"),
-      ),
+      appBar: customAppBar(),
       body: Center(
         child: loadings == false
             ? Image.asset(

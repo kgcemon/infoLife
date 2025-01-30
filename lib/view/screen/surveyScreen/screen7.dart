@@ -20,6 +20,13 @@ class _SurveyScreen7State extends State<SurveyScreen7> {
 
   Screen7Controller screen7controller = Screen7Controller();
 
+  @override
+  void initState() {
+    screen7controller.activeIndex.value = 0;
+    screen7controller.activeIndex2.value = 10;
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {

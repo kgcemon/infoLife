@@ -21,6 +21,14 @@ class _SurveyScreen4State extends State<SurveyScreen4> {
   final Screen4Controller screen4controller =
   Get.find<Screen4Controller>();
 
+
+  @override
+  void initState() {
+    screen4controller.activeIndex.value = 0;
+    screen4controller.activeIndex2.value = 10;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -16,7 +16,6 @@ class _SurveyScreen9State extends State<SurveyScreen9> {
   final SurveyAllScreenController _allScreenController =
   Get.find<SurveyAllScreenController>();
 
-
   @override
   Widget build(BuildContext context) {
     return Column(

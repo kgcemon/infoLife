@@ -27,6 +27,13 @@ class _SurveyScreen3State extends State<SurveyScreen3> {
   ];
 
   @override
+  void initState() {
+    screen3controller.activeIndex.value = 0;
+    screen3controller.activeIndex2.value = 10;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

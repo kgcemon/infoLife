@@ -9,6 +9,7 @@ import 'package:edu_servey/view/screen/surveyScreen/screen6.dart';
 import 'package:edu_servey/view/screen/surveyScreen/screen7.dart';
 import 'package:edu_servey/view/screen/surveyScreen/screen8.dart';
 import 'package:edu_servey/view/screen/surveyScreen/screen9.dart';
+import 'package:edu_servey/view/widget/app_bar.dart';
 import 'package:edu_servey/view/widget/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -43,6 +44,9 @@ class _MainSurveyScreenState extends State<MainSurveyScreen> {
   void initState() {
     super.initState();
     load();
+    controller.activeIndex.value = 0;
+    controller.activeIndex2.value = 10;
+    controller.activeIndex3.value = 10;
   }
 
   load() async {
@@ -54,11 +58,7 @@ class _MainSurveyScreenState extends State<MainSurveyScreen> {
   Widget build(BuildContext context) {
     print(controller.Q1.value);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: SvgPicture.asset("assets/logo.svg",height: 60,),
-      ),
+      appBar: customAppBar(),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),

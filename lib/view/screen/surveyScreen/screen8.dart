@@ -19,6 +19,16 @@ class _SurveyScreen8State extends State<SurveyScreen8> {
   Get.find<SurveyAllScreenController>();
 
   Screen8Controller screen8controller = Screen8Controller();
+
+
+  @override
+  void initState() {
+
+    screen8controller.activeIndex.value = 0;
+    screen8controller.activeIndex2.value = 10;
+
+    super.initState();
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -50,15 +60,16 @@ class _SurveyScreen8State extends State<SurveyScreen8> {
                     ),
                     child:  TextField(
                       controller: _allScreenController.yourNameController,
-                      decoration: const InputDecoration(
-                          hintText: "   নাম",
-                          border: OutlineInputBorder(
+                      decoration:  InputDecoration(
+                          hintText: "নাম",
+                          hintStyle: TextStyle(color: Colors.grey.shade400),
+                          border: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent)),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent)),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent)),
-                          contentPadding: EdgeInsets.all(0)),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 0,horizontal: 10)),
                     ),
                   ),
                   const SizedBox(
@@ -112,18 +123,20 @@ class _SurveyScreen8State extends State<SurveyScreen8> {
                   height: 12,
                 ),
                TextField(
+                 keyboardType: TextInputType.number,
                  controller: _allScreenController.mobileNumber,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   filled: true,
                     fillColor: Colors.white,
-                    hintText: "   মোবাইল নম্বর",
-                    border: OutlineInputBorder(
+                    hintText: "মোবাইল নম্বর",
+                    hintStyle: TextStyle(color: Colors.grey.shade400),
+                    border: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent)),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent)),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent)),
-                    contentPadding: EdgeInsets.all(0)),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 0,horizontal: 10)),
               ),
                 const SizedBox(
                   height: 12,
@@ -133,18 +146,20 @@ class _SurveyScreen8State extends State<SurveyScreen8> {
                   height: 12,
                 ),
                TextField(
+                 keyboardType: TextInputType.number,
                  controller: _allScreenController.othersPhoneNumber,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   filled: true,
                     fillColor: Colors.white,
-                    hintText: "   মোবাইল নম্বর",
-                    border: OutlineInputBorder(
+                    hintText: "মোবাইল নম্বর",
+                    hintStyle: TextStyle(color: Colors.grey.shade400),
+                    border: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent)),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent)),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent)),
-                    contentPadding: EdgeInsets.all(0)),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 0,horizontal: 10)),
               ),
             ],),
           ))

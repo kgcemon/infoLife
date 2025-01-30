@@ -1,3 +1,4 @@
+import 'package:edu_servey/view/widget/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -42,11 +43,7 @@ class _AllFromState extends State<AllFrom> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: SvgPicture.asset("assets/logo.svg"),
-      ),
+      appBar: customAppBar(),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: _allScreenController.getAllData(),
         builder: (context, snapshot) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
 import '../view/screen/sucess_gif_screen.dart';
 
 
@@ -10,10 +9,12 @@ class SurveyAllScreenController extends GetxController{
 
   RxInt activeIndex = 0.obs;
   RxInt activeIndex2 = 10.obs;
+  RxInt activeIndex3 = 10.obs;
   RxString Q1 = ''.obs; //আপনার কী নার্সারি থেকে দশম শ্রেণিতে পড়ে এমন ছেলে-মেয়ে আছে?
   RxString Q2 = ''.obs; //থাকলে, কতোজন আছে?
   TextEditingController studentsNameController = TextEditingController(); ////১. শিক্ষার্থীর নাম
   RxString Q3 = ''.obs; //কোন স্তরে পড়ে?
+  RxString QQ3 = ''.obs; //প্রাথমিক/মাধ্যমিক
   RxString Q4 = ''.obs; //তারা কী প্রাইভেট শিক্ষকের কাছে পড়ে?
   RxString Q5 = ''.obs; //পড়লে, কোন বিষয়ে পড়ে?
   RxString Q6 = ''.obs; //আপনি কী মনে করেন, আপনার সন্তানেরা আধুনিক শিক্ষা থেকে পিছেয়ে আছে?
@@ -38,6 +39,9 @@ class SurveyAllScreenController extends GetxController{
   indexChanger2(int index){
     activeIndex2.value = index;
   }
+  indexChanger3(int index){
+    activeIndex3.value = index;
+  }
 
   // Initialize SQLite database
   Future<void> initDatabase() async {
@@ -55,6 +59,7 @@ class SurveyAllScreenController extends GetxController{
             q2 TEXT,
             students_name TEXT,
             q3 TEXT,
+            qq3 TEXT,
             q4 TEXT,
             q5 TEXT,
             q6 TEXT,
@@ -85,6 +90,7 @@ class SurveyAllScreenController extends GetxController{
         'q2': Q2.value,
         'students_name': studentsNameController.text,
         'q3': Q3.value,
+        'qq3': QQ3.value,
         'q4': Q4.value,
         'q5': Q5.value,
         'q6': Q6.value,
@@ -286,7 +292,36 @@ class SurveyAllScreenController extends GetxController{
       }
     }else if (activeIndex.value == 9) {
       Get.snackbar("Success", "Your Data Save Successful");
-      saveData().then((value) => Get.to(()=>const SucessGifScreen()),);
+      saveData().then((value) {
+        Q1.value = '';
+        Q2.value = '';
+        Q3.value = '';
+        QQ3.value = '';
+        Q4.value = '';
+        Q5.value = '';
+        Q6.value = '';
+        Q7.value = '';
+        Q8.value = '';
+        Q9.value = '';
+        Q10.value = '';
+        Q11.value = '';
+        Q12.value = '';
+        Q13.value = '';
+        yourNameController.text = '';
+        mobileNumber.text = '';
+        othersPhoneNumber.text = '';
+        studentsNameController.text = '';
+        upoZila.value = '';
+        unionController.text = '';
+        pidbackController.text = '';
+        activeIndex.value = 0;
+        activeIndex2 = 10.obs;
+        activeIndex3 = 10.obs;
+        whoIsReadSelected.value = 0;
+        howManyHasStudentsFromNurseryToTenthGradeSelected.value = 30;
+        hasStudentsFromNurseryToTenthGradeSelected.value = 0;
+        Get.to(()=>const SucessGifScreen());
+      },);
     }
   }
 
