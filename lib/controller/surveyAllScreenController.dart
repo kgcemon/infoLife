@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../view/screen/sucess_gif_screen.dart';
+import 'package:http/http.dart' as http;
 
 
 class SurveyAllScreenController extends GetxController{
@@ -113,6 +115,48 @@ class SurveyAllScreenController extends GetxController{
       print("Database is not initialized!");
     }
   }
+
+
+  sendDataInServer()async{
+    var response  = await http.post(Uri.parse("uri"),body: {
+      "crated_by": "emon",
+      "q1": Q1.value,
+      "q2": Q2.value,
+      "q3": studentsNameController.text,
+      "q4": Q3.value,
+      "q5": QQ3.value,
+      "q6": Q4.value,
+      "q7": Q5.value,
+      "q8": Q6.value,
+      "q9": Q7.value,
+      "q10": Q8.value,
+      "q11": Q9.value,
+      "q12": Q10.value,
+      "q13": Q11.value,
+      "q14": yourNameController.text,
+      "q15": Q12.value,
+      "q16": mobileNumber.text,
+      "q17": othersPhoneNumber.text,
+      "q18": Q13.value,
+      "q19": upoZila.value,
+      "q20": unionController.text,
+      "q21": pidbackController.text
+    });
+    if(response.statusCode != 201){
+      saveData();
+    }
+  }
+
+
+
+ Future<void> saveAllData ()async{
+   final bool isConnected = await InternetConnectionChecker.instance.hasConnection;
+   if(isConnected){
+     sendDataInServer();
+   }else{
+     saveData();
+   }
+ }
 
 
 
@@ -292,7 +336,7 @@ class SurveyAllScreenController extends GetxController{
       }
     }else if (activeIndex.value == 9) {
       Get.snackbar("Success", "Your Data Save Successful");
-      saveData().then((value) {
+      saveAllData().then((value) {
         Q1.value = '';
         Q2.value = '';
         Q3.value = '';
