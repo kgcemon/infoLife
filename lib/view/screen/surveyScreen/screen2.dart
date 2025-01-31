@@ -120,44 +120,50 @@ class _SurveyScreen2State extends State<SurveyScreen2> {
             ),
           ),
           const SizedBox(height: 16),
-          Obx(() =>  _allScreenController.Q3.value == 'প্রাথমিক' ? GridView.builder(
-            shrinkWrap: true,
-            itemCount: subjectList1.length,
-            gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisExtent: 50,
-                mainAxisSpacing: 15,
-                crossAxisSpacing: 15,
-                crossAxisCount: 2),
-            itemBuilder: (context, index) =>Obx(
-              () => CustomButton(
-                isSelectedButton: _allScreenController.activeIndex2.value == index,
-                colorCode: 0xffDEEFFF,
-                btnName: subjectList1[index],
-                onPressed: () {
-                  _allScreenController.indexChanger2(index);
-                  _allScreenController.QQ3.value = subjectList1[index];
-                },
+          Obx(() =>  _allScreenController.Q3.value == 'প্রাথমিক' ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              shrinkWrap: true,
+              itemCount: subjectList1.length,
+              gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisExtent: 50,
+                  mainAxisSpacing: 15,
+                  crossAxisSpacing: 15,
+                  crossAxisCount: 2),
+              itemBuilder: (context, index) =>Obx(
+                () => CustomButton(
+                  isSelectedButton: _allScreenController.activeIndex2.value == index,
+                  colorCode: 0xffDEEFFF,
+                  btnName: subjectList1[index],
+                  onPressed: () {
+                    _allScreenController.indexChanger2(index);
+                    _allScreenController.QQ3.value = subjectList1[index];
+                  },
+                ),
               ),
             ),
           ) : const SizedBox(),),
-          Obx(() =>  _allScreenController.Q3.value == 'মাধ্যমিক' ? GridView.builder(
-            shrinkWrap: true,
-            itemCount: subjectList2.length,
-            gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisExtent: 50,
-                mainAxisSpacing: 15,
-                crossAxisSpacing: 15,
-                crossAxisCount: 2),
-            itemBuilder: (context, index) =>Obx( () => CustomButton(
-                isSelectedButton: _allScreenController.activeIndex3.value == index,
-                colorCode: 0xffDEEFFF,
-                btnName: subjectList2[index],
-                onPressed: () {
-                  _allScreenController.indexChanger3(index);
-                  _allScreenController.QQ3.value = subjectList2[index];
-                },
+          Obx(() =>  _allScreenController.Q3.value == 'মাধ্যমিক' ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              shrinkWrap: true,
+              itemCount: subjectList2.length,
+              gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisExtent: 50,
+                  mainAxisSpacing: 15,
+                  crossAxisSpacing: 15,
+                  crossAxisCount: 2),
+              itemBuilder: (context, index) =>Obx( () => CustomButton(
+                  isSelectedButton: _allScreenController.activeIndex3.value == index,
+                  colorCode: 0xffDEEFFF,
+                  btnName: subjectList2[index],
+                  onPressed: () {
+                    _allScreenController.indexChanger3(index);
+                    _allScreenController.QQ3.value = subjectList2[index];
+                  },
+                ),
               ),
             ),
           ) : const SizedBox(),)
